@@ -31,15 +31,16 @@ public class DietPlanDAOImpl implements DietPlanDAO{
 		}
 		try {
 			
-			String sql = "insert into dietPlan (userId,slots,foodType,proteinRatio,fatRatio,carbsRatio,total) values(?,?,?,?,?,?,?)";
+			String sql = "insert into dietPlan (id,userId,slots,foodType,proteinRatio,fatRatio,carbsRatio,total) values(?,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement=jdbcUtil.getPreparedStatement(sql);
-			preparedStatement.setString(1, dietPlan.getUserId());
-			preparedStatement.setString(2, dietPlan.getSlots());
-			preparedStatement.setString(3, dietPlan.getFoodType());
-			preparedStatement.setDouble(4, dietPlan.getProteinRatio());
-			preparedStatement.setDouble(5, dietPlan.getFatRatio());
-			preparedStatement.setDouble(6, dietPlan.getCarbsRatio());
-			preparedStatement.setDouble(7, dietPlan.getTotal());
+			preparedStatement.setLong(1, dietPlan.getId());
+			preparedStatement.setString(2, dietPlan.getUserId());
+			preparedStatement.setString(3, dietPlan.getSlots());
+			preparedStatement.setString(4, dietPlan.getFoodType());
+			preparedStatement.setDouble(5, dietPlan.getProteinRatio());
+			preparedStatement.setDouble(6, dietPlan.getFatRatio());
+			preparedStatement.setDouble(7, dietPlan.getCarbsRatio());
+			preparedStatement.setDouble(8, dietPlan.getTotal());
 			int i=preparedStatement.executeUpdate();
 			if(i!=0)
 			{

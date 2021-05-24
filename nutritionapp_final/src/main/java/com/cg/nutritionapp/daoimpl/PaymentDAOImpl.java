@@ -16,6 +16,7 @@ import com.cg.nutritionapp.dao.PaymentDAO;
 import com.cg.nutritionapp.exceptions.DuplicateIdException;
 import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.exceptions.PaymentException;
+import com.cg.nutritionapp.model.DietPlan;
 import com.cg.nutritionapp.model.Payment;
 import com.cg.nutritionapp.util.JDBCUtil;
 /**
@@ -53,7 +54,8 @@ public class PaymentDAOImpl extends JDBCUtil implements PaymentDAO
 	
 	@Override
 	public Payment delete(Payment payments) {
-		try {	deletePayment(payments);
+		try {	
+			deletePayment(payments);
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -92,15 +94,15 @@ public class PaymentDAOImpl extends JDBCUtil implements PaymentDAO
 	private boolean savePayment(Payment payments) throws SQLException, ClassNotFoundException, DuplicateIdException {
 		boolean result;
 		String result1;
-		String sql="insert into payments (id, payment,discount,created_At,userId,planId)"
-				+ " values(?,?,0,?,?,?)";
+		String sql="insert into payments (payment,discount,created_At,userId,planId)"
+				+ " values(?,0,?,?,?)";
 		PreparedStatement ps=getPreparedStatement(sql);
 		//changed
-		ps.setDouble(1, payments.getId());
-		ps.setDouble(2, payments.getPayment());
-		ps.setDate(3,java.sql.Date.valueOf(java.time.LocalDate.now()));
-		ps.setLong(4,payments.getUserId());
-		ps.setLong(5,payments.getPlanId());
+		//ps.setDouble(1, payments.getId());
+		ps.setDouble(1, payments.getPayment());
+		ps.setDate(2,java.sql.Date.valueOf(java.time.LocalDate.now()));
+		ps.setLong(3,payments.getUserId());
+		ps.setLong(4,payments.getPlanId());
 		int i=ps.executeUpdate();
 		if(i!=0) System.out.println("\t\tPayment inserted");
 		else throw new DuplicateIdException("\n\t\tYou are trying to enter duplicate UserId");
@@ -128,6 +130,47 @@ public class PaymentDAOImpl extends JDBCUtil implements PaymentDAO
 		if(i!=0) System.out.println("\t\tPayment deleted");
 		else System.out.println("\t\tPayment not deleted");
 	}
+	
+	
+	/*public DietPlan deleteDietPlanById(long id) {
+		DietPlan dietPlan=new DietPlan();
+		try {
+			String query="select * from dietPlan where id=?";
+			PreparedStatement preparedStatement=jdbcUtil.getPreparedStatement(query);
+			preparedStatement.setLong(1, id);
+			ResultSet rs=preparedStatement.executeQuery(); 
+			if(rs.next()==false)
+				System.out.println("No dietPlan found with entered id");
+			rs.beforeFirst();
+
+			while(rs.next()){  
+				dietPlan.setId(rs.getLong(1));
+				dietPlan.setUserId(rs.getString(2));
+				dietPlan.setSlots(rs.getString(3));
+				dietPlan.setFoodType(rs.getString(4));
+				dietPlan.setProteinRatio(rs.getDouble(5));
+				dietPlan.setFatRatio(rs.getDouble(6));
+				dietPlan.setCarbsRatio(rs.getDouble(7));
+				dietPlan.setTotal(rs.getDouble(8));
+
+			}
+			query="delete from dietPlan where id=?";
+			PreparedStatement preparedStatement1=jdbcUtil.getPreparedStatement(query);
+
+			preparedStatement1.setLong(1, id);
+			int i=preparedStatement1.executeUpdate();
+			if(i!=0) {
+				return dietPlan;
+			}else {
+				System.out.println("No dietPlan has been deleted.");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}*/
+
 
 	public boolean save(boolean payment) {
 		// TODO Auto-generated method stub

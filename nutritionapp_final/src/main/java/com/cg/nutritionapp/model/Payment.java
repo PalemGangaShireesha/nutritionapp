@@ -19,7 +19,7 @@ public class Payment {
 	/**
 	 * This field represent id of payment
 	 */
-	@Id@GeneratedValue
+
 	private Long id;
 	/**
 	 * This field represent amount of payment

@@ -5,6 +5,12 @@ package com.cg.nutritionapp.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class NutritionPlan {
 	/**
 	 * ID of the Nutrition Plan
@@ -39,6 +45,7 @@ public class NutritionPlan {
 	public NutritionPlan(String name, String planDescription, Date created_At, Date updated_At, Long price) 
 	{
 		super(); 
+		//this.id = id;
 		this.name = name;
 		this.planDescription = planDescription; 
 		this.created_At = created_At;
@@ -46,6 +53,14 @@ public class NutritionPlan {
 		this.price = price;
 	}
 
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -89,8 +104,8 @@ public class NutritionPlan {
 
 	@Override
 	public String toString() {
-		return "NutritionPlan [name=" + name + ", planDescription=" + planDescription + ", created_At=" + created_At
-				+ ", updated_At=" + updated_At + ", price=" + price + "]";
+		return "NutritionPlan [id=" + id + ", name=" + name + ", planDescription=" + planDescription + ", created_At="
+				+ created_At + ", updated_At=" + updated_At + ", price=" + price + "]";
 	}
 	
 }

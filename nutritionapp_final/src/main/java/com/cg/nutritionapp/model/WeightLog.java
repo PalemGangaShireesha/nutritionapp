@@ -3,6 +3,8 @@ package com.cg.nutritionapp.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+
 /**
  * In this class all the data in the module is stored and same is manipulated in all the classes in the app.
  * This model class is foundation of your WeightLog Module.
@@ -10,6 +12,7 @@ import java.time.LocalDate;
  * @author 
  *
  */
+@Entity
 public class WeightLog {
 	/*
 	 * Store your Weight Entry.

@@ -14,7 +14,7 @@ import com.cg.nutritionapp.service.UserService;
 public class UserServiceImpl implements UserService{
 	static UserDAOImpl dao = new UserDAOImpl();
 	 static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	private Long id;
+	
 
 
 	@Override
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService{
         String password = br.readLine();
     
 		//after user enters values, store them in a user variable
-        User user = new User(id,userId, name, contact, gender, dob, photo, email, role, status, weight, height, dOrientation, intensity, goal, workoutime, wakeUpTime, sleepTime, medicalCondition, allergicTo, loginName, password);
+        User user = new User(userId, name, contact, gender, dob, photo, email, role, status, weight, height, dOrientation, intensity, goal, workoutime, wakeUpTime, sleepTime, medicalCondition, allergicTo, loginName, password);
         User status1 = dao.save(user);
         if(status1!=null )
         {
@@ -191,7 +191,7 @@ System.out.println("------------------------------------------------");
         System.out.println("------------------------------------------------");
         String password = br.readLine();
         //after user enters values, store them in a user variable
-        User user = new User(id,userId, name, contact, gender, dob, photo, email, role, status, weight, height, dOrientation, intensity, goal, workoutime, wakeUpTime, sleepTime, medicalCondition, allergicTo, loginName, password);
+        User user = new User(userId, name, contact, gender, dob, photo, email, role, status, weight, height, dOrientation, intensity, goal, workoutime, wakeUpTime, sleepTime, medicalCondition, allergicTo, loginName, password);
         User status1 = dao.update(user);
         if(status1!=null )
         {

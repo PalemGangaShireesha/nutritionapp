@@ -104,6 +104,8 @@ public class MenuUtil {
 				{
 				case 1:
 				{
+					
+			
 					System.out.println("Enter Plan Name :");
 					String name=sc.next();
 					System.out.println("Enter the Plan Description :");

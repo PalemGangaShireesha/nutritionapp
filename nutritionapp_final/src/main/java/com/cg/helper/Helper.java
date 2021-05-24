@@ -56,10 +56,10 @@ public class Helper {
 	}
 	public static void case3() throws PaymentException {
 		System.out.println("\t\tDeletion of payment is not applicable.");
-		/*	long userId=sc.nextLong();
+		/*long userId=sc.nextLong();
 		Payment payments=new Payment(1, payment,PaymentDAOImpl.DISCOUNT, localdate, localdate, userId, planId);
-		obj1.delete(payments);
-		 */
+		obj1.delete(payments);*/
+		 
 	}
 	public static void case4() {
 		System.out.println("\t\tTHESE ARE ALL PAYMENT RECORDS");

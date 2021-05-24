@@ -43,7 +43,7 @@ public class NutritionPlanDAOImpl extends JDBCUtil implements NutritionPlanDAO {
 			ResultSet rs=ps.executeQuery();
 			if(rs.next())
 			{
-				nutritionPlanFromDB=new NutritionPlan();											//**HERE**
+				nutritionPlanFromDB=new NutritionPlan();										
 				nutritionPlanFromDB.setName(rs.getString("name"));
 			}
 		} catch (SQLException e) {
@@ -55,8 +55,9 @@ public class NutritionPlanDAOImpl extends JDBCUtil implements NutritionPlanDAO {
 	private void saveNutritionPlan(NutritionPlan nutritionPlan) {
 		try
 		{
-			String sql="insert into nutritionplans(name,plan_description,created_at,updated_at,price) values(?,?,?,?,?)";
+			String sql="insert into nutritionplans(name,planDescription,created_at,updated_at,price) values(?,?,?,?,?)";
 			PreparedStatement ps=getPreparedStatement(sql);
+			//ps.setInt(1, nutritionPlan.getId());
 			ps.setString(1, nutritionPlan.getName());
 			ps.setString(2, nutritionPlan.getPlanDescription());
 			ps.setDate(3,nutritionPlan.getCreated_At());
@@ -72,6 +73,7 @@ public class NutritionPlanDAOImpl extends JDBCUtil implements NutritionPlanDAO {
 	@Override
 	public List<NutritionPlan> findAll() throws NutritionPlanException{
 		List<NutritionPlan> nutritionPlan=new ArrayList<NutritionPlan>();
+		
 		try
 		{
 			String sql="select * from nutritionplans";
@@ -79,8 +81,11 @@ public class NutritionPlanDAOImpl extends JDBCUtil implements NutritionPlanDAO {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
+				
 				nutritionPlan.add(new NutritionPlan(rs.getString(2),rs.getString(3),rs.getDate(4),rs.getDate(5),rs.getLong(6)));
+				
 			}
+			
 			return nutritionPlan;
 		}catch(Exception e)
 		{
@@ -93,7 +98,7 @@ public class NutritionPlanDAOImpl extends JDBCUtil implements NutritionPlanDAO {
 	public NutritionPlan update(NutritionPlan nutritionPlan) {
 		try
 		{
-			String sql="update nutritionplans set plan_description=?,updated_at=? where name=?";
+			String sql="update nutritionplans set planDescription=?,updated_at=? where name=?";
 			PreparedStatement ps=getPreparedStatement(sql);
 			ps.setString(3, nutritionPlan.getName());
 			ps.setDate(2, nutritionPlan.getUpdated_At());

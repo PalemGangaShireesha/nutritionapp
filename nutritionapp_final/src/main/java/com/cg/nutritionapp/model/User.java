@@ -12,7 +12,7 @@ public class User {
 	/*
 	 * id is used for storing automatically generated id
 	 */
-	@Id @GeneratedValue
+	//@Id @GeneratedValue
 	private Long id;
 	/**
 	 * userIdentification is unique and is String
@@ -131,12 +131,12 @@ public class User {
 	 * @param loginName
 	 * @param password
 	 */
-	public User(Long id,String userIdentification, String name, String contact, String gender, String dob, String photo,
+	public User(String userIdentification, String name, String contact, String gender, String dob, String photo,
 			String email, String role, String status, Double weight, Double height, String diateryOrientation,
 			Double intensity, String goal, String workOutTime, String wakeUpTime, String sleepTime,
 			String medicalConditon, String allergicTo, String loginName, String password) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.userIdentification = userIdentification;
 		this.name = name;
 		this.contact = contact;

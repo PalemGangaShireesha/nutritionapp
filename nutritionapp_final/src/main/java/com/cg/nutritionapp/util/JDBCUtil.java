@@ -17,7 +17,7 @@ public class JDBCUtil {
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/nutritionapp","root","siri@2526");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/nutritionapp?autoReconnect=true&useSSL=false","root","siri@2526");
 		} catch (Exception e)
 		{
 			e.printStackTrace();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cg.nutritionapp.dao.PaymentDAO;
 import com.cg.nutritionapp.daoimpl.PaymentDAOImpl;
+import com.cg.nutritionapp.exceptions.PaymentException;
 import com.cg.nutritionapp.model.Payment;
 import com.cg.nutritionapp.service.PaymentsService;
 /**
@@ -32,6 +33,7 @@ public class PaymentsServiceImpl implements PaymentsService {
 
 	@Override
 	public Payment findPaymentsById(Long id) {
+		//return paymentDAO.findPaymentsById(id);
 		return null;
 	}
 

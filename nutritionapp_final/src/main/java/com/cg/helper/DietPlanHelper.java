@@ -32,8 +32,10 @@ public class DietPlanHelper {
 	 * case 1 method when user wants to insert a dietplan into database
 	 */
 	public  void case1() throws DietPlanException {
+	
 		System.out.println("Enter the id:");
 		Id=scanner.nextInt();
+		scanner.nextLine();
 		System.out.println("Enter the user id:");
 		userId=scanner.nextLine();
 		System.out.println("Enter the slots: (morning meal | evening meal) ");
