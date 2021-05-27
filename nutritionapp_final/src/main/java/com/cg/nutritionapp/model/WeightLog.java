@@ -3,7 +3,11 @@ package com.cg.nutritionapp.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * In this class all the data in the module is stored and same is manipulated in all the classes in the app.
@@ -34,6 +38,15 @@ public class WeightLog {
 	 * Will be asked from user whenever they access any record.
 	 */
 	String userId;
+	@ManyToOne(cascade = CascadeType.ALL)                           
+	@JoinColumn(name = "Id",referencedColumnName = "Id")
+	private User users;
+	public User getUsers() {
+		return users;
+	}
+	public void setUsers(User users) {
+		this.users = users;
+	}
 	/**
 	 * Provides initialization to module.
 	 */

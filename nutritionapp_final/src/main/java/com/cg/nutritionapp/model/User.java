@@ -1,7 +1,16 @@
 package com.cg.nutritionapp.model;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 /**
  * A model class used to hold and transfer attribute values from one layer to other.
  * @author 
@@ -12,11 +21,12 @@ public class User {
 	/*
 	 * id is used for storing automatically generated id
 	 */
-	//@Id @GeneratedValue
+	@Column(name="Id")
 	private Long id;
 	/**
 	 * userIdentification is unique and is String
 	 */
+	
 	private String userIdentification;
 	/**
 	 * name is of type String and used to store user's name
@@ -98,7 +108,17 @@ public class User {
 	 * password is the password set by user
 	 */
 	private String password;
+	@OneToOne(cascade = CascadeType.ALL)
+	private DietPlan dietplan;
+	
 
+	public DietPlan getDietplan() {
+		return dietplan;
+	}
+
+	public void setDietplan(DietPlan dietplan) {
+		this.dietplan = dietplan;
+	}
 
 	/**
 	 * default Constructor

@@ -3,9 +3,13 @@ package com.cg.nutritionapp.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.cg.nutritionapp.exceptions.PaymentException;
 
@@ -19,7 +23,9 @@ public class Payment {
 	/**
 	 * This field represent id of payment
 	 */
-
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name="payment_id")
 	private Long id;
 	/**
 	 * This field represent amount of payment
@@ -47,8 +53,20 @@ public class Payment {
 	 * This field represent id of plan which user chose
 	 */
 	private Long planId;
+	@ManyToOne
+	@JoinColumn(name="Id")
+	private User users;
+	
 
 
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
 
 	public Payment(long id, double payment, double discount, LocalDate created_At,
 			LocalDate updated_At, long userId,long planId) throws PaymentException {
@@ -66,12 +84,14 @@ public class Payment {
 		this.created_At = created_At;
 		this.updated_At = updated_At;
 		this.userId = userId;
+	
 		/*	if(planId<0) {
 			throw new PaymentException("Plan Id is invalid");
 		}
 		 */
 		this.planId = planId;
 	}
+
 
 	public Long getId() {
 		return id;

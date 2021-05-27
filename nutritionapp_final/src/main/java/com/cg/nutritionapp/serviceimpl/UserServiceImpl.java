@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.cg.nutritionapp.daoimpl.UserDAOImpl;
+import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.model.User;
 import com.cg.nutritionapp.service.UserService;
 
@@ -239,7 +240,7 @@ System.out.println("------------------------------------------------");
 	}
 
 	@Override
-	public void displayUser(User user) {
+	public void displayUser(User user){
 		System.out.println("User ID: "+user.getId());
         System.out.println("User Useridentification: "+user.getUserIdentification());
         System.out.println("User Name : "+user.getName());

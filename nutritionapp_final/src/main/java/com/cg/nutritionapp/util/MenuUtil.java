@@ -108,6 +108,7 @@ public class MenuUtil {
 			
 					System.out.println("Enter Plan Name :");
 					String name=sc.next();
+					sc.nextLine();
 					System.out.println("Enter the Plan Description :");
 					String planDesc1=sc.next();
 					String planDesc=planDesc1.replace('_',' ');

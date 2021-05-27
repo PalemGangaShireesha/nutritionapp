@@ -1,5 +1,9 @@
 package com.cg.nutritionapp.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import com.cg.nutritionapp.exceptions.DietPlanException;
 
 /**
@@ -21,6 +25,20 @@ public class DietPlan {
 	double fatRatio;
 	double carbsRatio;
 	double total;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Id")
+	
+	private User users;
+	
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
 
 	/**
 	 * Constructor for instantiation of DietPlan object with all fields

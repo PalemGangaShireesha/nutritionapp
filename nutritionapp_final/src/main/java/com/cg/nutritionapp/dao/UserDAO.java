@@ -3,6 +3,7 @@ package com.cg.nutritionapp.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.exceptions.UserException;
 import com.cg.nutritionapp.model.User;
 
@@ -25,8 +26,9 @@ public interface UserDAO {
 	 * findByUserIdentification() is used for finding any user by UserIndentification and returns the found user
 	 * @param userId
 	 * @return
+	 * @throws NoRecordException 
 	 */
-	User findByUserIdentification(String userId);
+	User findByUserIdentification(String userId) throws NoRecordException;
 
 	/**
 	 * update() is used to update any entries in the database for a specific user

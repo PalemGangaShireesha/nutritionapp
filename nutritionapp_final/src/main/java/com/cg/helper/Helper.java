@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 import com.cg.nutritionapp.dao.PaymentDAO;
 import com.cg.nutritionapp.daoimpl.PaymentDAOImpl;
 import com.cg.nutritionapp.exceptions.DuplicateIdException;
 import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.exceptions.PaymentException;
 import com.cg.nutritionapp.model.Payment;
+
 /**
  * This is an Helper class
  * @author admin
@@ -27,6 +29,7 @@ public class Helper {
 	Long userId;
 	static LocalDate localdate =java.time.LocalDate.now();
 	static PaymentDAOImpl obj1=new PaymentDAOImpl();
+
 	static Scanner sc=new Scanner(System.in);
 
 	public static void case1() throws DuplicateIdException,PaymentException {
@@ -64,6 +67,7 @@ public class Helper {
 	public static void case4() {
 		System.out.println("\t\tTHESE ARE ALL PAYMENT RECORDS");
 		List<Payment> list=new ArrayList<Payment>();
+		
 		list=obj1.findAll();
 		for(Payment p:list) {
 			System.out.print("\t\t");

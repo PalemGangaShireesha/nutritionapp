@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.nutritionapp.dao.UserDAO;
+import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.exceptions.UserException;
 import com.cg.nutritionapp.model.User;
 import com.cg.nutritionapp.util.JDBCUtil;
@@ -78,7 +79,7 @@ public class UserDAOImpl implements UserDAO {
 
 	
 	@Override
-	public User findByUserIdentification(String userId) {
+	public User findByUserIdentification(String userId){
 		User u = null;  
 		try{ 
 			String sql = "select * from users where userIdentification=(?)";
@@ -122,7 +123,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User update(User user)  {
 		try {
-		String sql = "update user set name=?, contact=?, gender=?, dob=?, photo=?, email=?, role=?, status=?, weight=?, height=?, diateryOrientation=?, intensity=?, goal=?, workOutTime=?, WakeUpTime=?, sleepTime=?, medicalCondition=?, allergicTo=?, loginName=?, password=? where UserIdentification=?";
+		String sql = "update users set name=?, contact=?, gender=?, dob=?, photo=?, email=?, role=?, status=?, weight=?, height=?, diateryOrientation=?, intensity=?, goal=?, workOutTime=?, WakeUpTime=?, sleepTime=?, medicalCondition=?, allergicTo=?, loginName=?, password=? where UserIdentification=?";
 		PreparedStatement pstmt = jdbcUtil.getPreparedStatement(sql);
 		//userUpdate(user, pstmt);
 		//return user;

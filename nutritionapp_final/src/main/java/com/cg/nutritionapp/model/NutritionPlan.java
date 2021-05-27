@@ -5,17 +5,22 @@ package com.cg.nutritionapp.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 @Entity
 public class NutritionPlan {
 	/**
 	 * ID of the Nutrition Plan
 	 * ID is auto-generated
 	 */
+	@Id
+	@Column(name="id")
 	Integer id;
 	/**
 	 * Name of the Nutrition Plan
@@ -37,7 +42,7 @@ public class NutritionPlan {
 	 * Price of the Plan
 	 */
 	Long price;
-
+	
 	public NutritionPlan()
 	{
 	}
