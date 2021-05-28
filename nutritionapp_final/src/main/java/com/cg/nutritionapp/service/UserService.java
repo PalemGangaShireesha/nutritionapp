@@ -44,7 +44,11 @@ public interface UserService {
 
 	/**
 	 * used to display user
-	 * @param user
+	 * @param@Override
+	 user
 	 */
 	public void displayUser(User user);
+
+
+	void viewUserDietPlan();
 }

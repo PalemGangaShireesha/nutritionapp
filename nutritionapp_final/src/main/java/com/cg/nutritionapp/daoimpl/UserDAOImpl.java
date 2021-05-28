@@ -212,4 +212,46 @@ public class UserDAOImpl implements UserDAO {
 		    }catch(Exception e){System.out.println(e);}  
 		    return list;  
 	}
+
+	public void printAll() {
+		// TODO Auto-generated method stub
+		List<User> list=new ArrayList<User>();  
+	      
+	    try{  
+	    	String sql = "select * from users left join Dietplan ON users.userIdentification = Dietplan.userId";
+	        PreparedStatement ps=jdbcUtil.getPreparedStatement(sql);  
+	        ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	System.out.println("user id " + rs.getLong("id"));
+				System.out.println("user identification " + rs.getString("userIdentification"));
+				System.out.println("user contact " + rs.getString("contact"));
+				System.out.println("user gender " + rs.getString("gender"));
+				System.out.println("user date of birth " + rs.getString("dob"));
+				System.out.println("user image link " + rs.getString("photo"));
+				System.out.println("user email id " + rs.getString("email"));
+				System.out.println("user role " + rs.getString("role"));
+				System.out.println("user status " + rs.getString("status"));
+				System.out.println("user weight " + rs.getDouble("weight"));
+				System.out.println("user height " + rs.getDouble("height"));
+				System.out.println("user dietary orientation " + rs.getString("diateryOrientation"));
+				System.out.println("user intensity " + rs.getDouble("intensity"));
+				System.out.println("user goal " + rs.getString("goal"));
+				System.out.println("user workout time " + rs.getString("workOutTime"));
+				System.out.println("user wakeup time " + rs.getString("wakeUpTime"));
+				System.out.println("user sleep time " + rs.getString("sleepTime"));
+				System.out.println("user medical condition " + rs.getString("medicalCondition"));
+				System.out.println("user is allergic to " + rs.getString("allergicTo"));
+				System.out.println("login name of user " + rs.getString("loginName"));
+				System.out.println("password " + rs.getString("password"));
+				System.out.println("dietplan id " + rs.getLong("id"));
+				System.out.println("user diet slot " + rs.getString("slots"));
+				System.out.println("user food type " + rs.getString("foodType"));
+				System.out.println("diet protein ratio " + rs.getDouble("proteinRatio"));
+				System.out.println("dietfat ratio " + rs.getDouble("fatRatio"));
+				System.out.println("diet carbs ratio " + rs.getDouble("carbsRatio"));
+				System.out.println("toal diet intake " + rs.getDouble("total"));
+				System.out.println("---------------------------------------");
+	        }  
+	    }catch(Exception e){System.out.println(e);}
+	}
 }

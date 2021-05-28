@@ -47,7 +47,8 @@ public class MenuUtil {
 				System.out.println("C. Update Users");
 				System.out.println("D. Delete User");
 				System.out.println("E. Search User");
-				System.out.println("F. Exit");
+				System.out.println("F. View User plan");
+				System.out.println("G. Exit");
 				System.out.println("===========================================");
 				System.out.println("Enter an option");
 				System.out.println("===========================================");
@@ -75,8 +76,12 @@ public class MenuUtil {
 				case "E":
 					ps.searchUser();
 					break;
-
+		
 				case "F":
+					ps.viewUserDietPlan();
+					break;
+
+				case "G":
 					System.out.println("******************************THANK YOU********************");
 					System.exit(0);
 					break;

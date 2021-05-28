@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.cg.nutritionapp.dao.UserDAO;
 import com.cg.nutritionapp.daoimpl.UserDAOImpl;
+import com.cg.nutritionapp.exceptions.NoRecordException;
 import com.cg.nutritionapp.exceptions.UserException;
 import com.cg.nutritionapp.model.User;
 
@@ -57,8 +58,14 @@ public class UserDAOImplTest {
 	@Test
 	public void test_findByUserIdentification_GivenUserId_ShouldReturnUserObject() {
 		String userId = "vanshika123";
-		User foundUser = userDao.findByUserIdentification(userId);
-		assertNotNull(foundUser);
+		User foundUser;
+		try {
+			foundUser = userDao.findByUserIdentification(userId);
+			assertNotNull(foundUser);
+		} catch (NoRecordException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test

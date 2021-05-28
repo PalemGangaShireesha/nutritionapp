@@ -21,20 +21,23 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void viewUser() {
 		System.out.println("-----------------------------------------------");
-
-        //get all the user from the dao findAll method and store
-        //them to a user type UserList
         List<User> userList = dao.findAll();
         for(User user: userList)
         {
-            //display User one by one
             displayUser(user);
         }
         System.out.println("-----------------------------------------------");
         System.out.println("\n");
-		
 	}
-
+	
+	@Override
+	public void viewUserDietPlan() {
+		System.out.println("-----------------------------------------------");
+		dao.printAll();
+        System.out.println("-----------------------------------------------");
+        System.out.println("\n");
+	}
+	
 	@Override
 	public void addUser() throws NumberFormatException, IOException {
 		System.out.println("------------------------------------------------");
