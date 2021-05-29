@@ -48,7 +48,9 @@ public class MenuUtil {
 				System.out.println("D. Delete User");
 				System.out.println("E. Search User");
 				System.out.println("F. View User plan");
-				System.out.println("G. Exit");
+				System.out.println("G. View User payments");
+				System.out.println("H. View User weight log details");
+				System.out.println("I. Exit");
 				System.out.println("===========================================");
 				System.out.println("Enter an option");
 				System.out.println("===========================================");
@@ -80,8 +82,16 @@ public class MenuUtil {
 				case "F":
 					ps.viewUserDietPlan();
 					break;
-
+					
 				case "G":
+					ps.viewUserPayments();
+					break;
+					
+				case "H":
+					ps.viewUserWeightLog();
+					break;
+
+				case "I":
 					System.out.println("******************************THANK YOU********************");
 					System.exit(0);
 					break;

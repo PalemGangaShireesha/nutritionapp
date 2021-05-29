@@ -51,4 +51,10 @@ public interface UserService {
 
 
 	void viewUserDietPlan();
+
+
+	void viewUserPayments();
+
+
+	void viewUserWeightLog();
 }

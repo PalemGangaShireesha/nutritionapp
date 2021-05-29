@@ -39,6 +39,21 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public void viewUserPayments() {
+		System.out.println("-----------------------------------------------");
+		dao.printUserPayments();
+        System.out.println("-----------------------------------------------");
+        System.out.println("\n");
+	}
+
+	@Override
+	public void viewUserWeightLog() {
+		System.out.println("-----------------------------------------------");
+		dao.printUserWeightLog();
+        System.out.println("-----------------------------------------------");
+        System.out.println("\n");
+	}
+	@Override
 	public void addUser() throws NumberFormatException, IOException {
 		System.out.println("------------------------------------------------");
         

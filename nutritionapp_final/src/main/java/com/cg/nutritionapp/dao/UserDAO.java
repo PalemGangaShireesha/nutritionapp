@@ -21,7 +21,7 @@ public interface UserDAO {
 	 * @return
 	 */
 	List<User> findAll();
-
+	
 	/**
 	 * findByUserIdentification() is used for finding any user by UserIndentification and returns the found user
 	 * @param userId
@@ -45,6 +45,7 @@ public interface UserDAO {
 	 * @throws SQLException
 	 */
 	int delete (String uId) throws UserException, SQLException;
-
+	
+	
 
 }

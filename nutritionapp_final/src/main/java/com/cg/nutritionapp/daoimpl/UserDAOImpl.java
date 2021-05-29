@@ -215,8 +215,6 @@ public class UserDAOImpl implements UserDAO {
 
 	public void printAll() {
 		// TODO Auto-generated method stub
-		List<User> list=new ArrayList<User>();  
-	      
 	    try{  
 	    	String sql = "select * from users left join Dietplan ON users.userIdentification = Dietplan.userId";
 	        PreparedStatement ps=jdbcUtil.getPreparedStatement(sql);  
@@ -251,6 +249,62 @@ public class UserDAOImpl implements UserDAO {
 				System.out.println("diet carbs ratio " + rs.getDouble("carbsRatio"));
 				System.out.println("toal diet intake " + rs.getDouble("total"));
 				System.out.println("---------------------------------------");
+	        }  
+	    }catch(Exception e){System.out.println(e);}
+	}
+
+	public void printUserPayments() {
+		// TODO Auto-generated method stub
+		try{  
+	    	String sql = "select * from users inner join payments ON users.userIdentification = payments.userId";
+	        PreparedStatement ps=jdbcUtil.getPreparedStatement(sql); 
+	        ArrayList<Long> ids = new ArrayList<Long>();
+	        Long currId;
+	        boolean idVisited;
+	        ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	currId = rs.getLong("id");
+	        	idVisited = ids.contains(currId);
+	        	if (!idVisited) {
+	        		ids.add(currId);
+	        		//System.out.println("user id " + currId);
+	        		System.out.println("user id " + rs.getString("userIdentification"));
+					System.out.println("user contact " + rs.getString("contact"));
+					System.out.println("user gender " + rs.getString("gender"));
+					System.out.println("user email id " + rs.getString("email"));
+					System.out.println("login name of user " + rs.getString("loginName"));
+					System.out.println("password " + rs.getString("password"));
+					System.out.println("\nPayments made by user:");
+	        	}
+				System.out.println("\nPayment id " + rs.getLong("payments.id"));
+				System.out.println("Payment " + rs.getDouble("payment"));
+				System.out.println("Created on " + rs.getDate("created_At"));
+				System.out.println("Payment last updated on " + rs.getDate("updated_At"));
+				System.out.println("Payment made for plan- " + rs.getLong("planId"));
+				if (idVisited) System.out.println("=====================================");
+	        }  
+	    }catch(Exception e){System.out.println(e);}
+	}
+
+	public void printUserWeightLog() {
+		// TODO Auto-generated method stub
+		try{  
+	    	String sql = "select * from users inner join weightlog ON users.userIdentification = weightlog.userId";
+	        PreparedStatement ps=jdbcUtil.getPreparedStatement(sql);
+	        ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	System.out.println("user id " + rs.getString("userIdentification"));
+				System.out.println("user contact " + rs.getString("contact"));
+				System.out.println("user gender " + rs.getString("gender"));
+				System.out.println("user email id " + rs.getString("email"));
+				System.out.println("login name of user " + rs.getString("loginName"));
+				System.out.println("password " + rs.getString("password"));
+				System.out.println("User weight " + rs.getInt("weight"));
+				if (rs.getDate("updated_At") == null)
+					System.out.println("Weight last updated on " + rs.getDate("created_At"));
+				else
+					System.out.println("Weight last updated on " + rs.getDate("updated_At"));
+				System.out.println("=====================================");
 	        }  
 	    }catch(Exception e){System.out.println(e);}
 	}
