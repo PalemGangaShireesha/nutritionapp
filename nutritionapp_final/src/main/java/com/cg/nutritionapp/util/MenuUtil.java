@@ -4,27 +4,22 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Date;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Scanner;
 
-import com.cg.helper.*;
-import com.cg.nutritionapp.exceptions.*;
+import com.cg.helper.DietPlanHelper;
+import com.cg.helper.Helper;
+import com.cg.helper.WeightLogCases;
+import com.cg.nutritionapp.exceptions.PaymentException;
 import com.cg.nutritionapp.model.NutritionPlan;
-import com.cg.nutritionapp.serviceimpl.*;
-import com.cg.nutritionapp.util.*;
-/**
- * Inputs are taken through scanner in this class.
- * @author 
- *
- */
+import com.cg.nutritionapp.serviceimpl.NutritionPlanServiceImpl;
+import com.cg.nutritionapp.serviceimpl.UserServiceImpl;
 
 public class MenuUtil {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static UserServiceImpl ps = new UserServiceImpl();
 
-	public void start() throws Exception
-	{
+	public void start() throws Exception {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("------------Nutrition App------------");
 		System.out.println("1. Users");
@@ -32,16 +27,14 @@ public class MenuUtil {
 		System.out.println("3. Diet Plans");
 		System.out.println("4. Weight Log");
 		System.out.println("5. Payment");
+		System.out.println("6. Exit");
 		System.out.println("Enter your Choice = ");
-		int i=sc.nextInt();
-
-		switch(i)
-		{
+		int n, choice, i = sc.nextInt();
+		String option, decision;
+		switch(i) {
 		case 1:
-			String option = "";
-
-			do
-			{
+			option = "";
+			do {
 				System.out.println("A. View Users");
 				System.out.println("B. Add Users");
 				System.out.println("C. Update Users");
@@ -50,27 +43,26 @@ public class MenuUtil {
 				System.out.println("F. View User plan");
 				System.out.println("G. View User payments");
 				System.out.println("H. View User weight log details");
-				System.out.println("I. Exit");
+				System.out.println("I. Go back to main menu");
+				System.out.println("J. Exit");
 				System.out.println("===========================================");
 				System.out.println("Enter an option");
 				System.out.println("===========================================");
 				option = br.readLine();
-				System.out.println("\n");
-
-				switch(option.toUpperCase())
-				{
+				System.out.println("");
+				switch(option.toUpperCase()) {
 				case "A":
 					ps.viewUser();
 					break;
-
+					
 				case "B":
 					ps.addUser();
 					break;
-
+				
 				case "C":
 					ps.updateUser();
 					break;
-
+				
 				case "D":
 					ps.deleteUser();
 					break;
@@ -90,37 +82,41 @@ public class MenuUtil {
 				case "H":
 					ps.viewUserWeightLog();
 					break;
-
+					
 				case "I":
+					start();
+					break;
+
+				case "J":
 					System.out.println("******************************THANK YOU********************");
 					System.exit(0);
 					break;
 
 				default:
-					System.out.println("Invalid Option! Please enter again");
-					break;
+					System.out.println("Invalid Option!");
+					System.out.println("1. Continue here 2. Go to main menu 3. Exit");
+					choice = sc.nextInt();
+					if (choice == 1) continue;
+					else if (choice == 2) start();
+					else System.out.println("Thank you!");
 				}
-			}while(!option.equals("F"));
+			} while (!option.equals("J"));
 			break;
 		case 2:
-			String decision="n";
-			System.out.println("------------Nutrition Plans------------");
-			System.out.println("1. Make A New Nutrition Plan");
-			System.out.println("2. Display All Nutrition Plans");
-			System.out.println("3. Update Plan Description Of A Nutrition Plan");
-			System.out.println("4. Delete A Nutrition Plan");
-			System.out.println("---------------------------------------");
+			decision = "n";
 			do {
+				System.out.println("------------Nutrition Plans------------");
+				System.out.println("1. Make A New Nutrition Plan");
+				System.out.println("2. Display All Nutrition Plans");
+				System.out.println("3. Update Plan Description Of A Nutrition Plan");
+				System.out.println("4. Delete A Nutrition Plan");
+				System.out.println("---------------------------------------");
 				System.out.println("Please enter your choice : ");
-				int choice=sc.nextInt();
-				NutritionPlanServiceImpl nutritionPlanServiceImpl=new NutritionPlanServiceImpl();
-
-				switch(choice)
-				{
+				choice = sc.nextInt();
+				NutritionPlanServiceImpl nutritionPlanServiceImpl = new NutritionPlanServiceImpl();
+				switch(choice) {
 				case 1:
 				{
-					
-			
 					System.out.println("Enter Plan Name :");
 					String name=sc.next();
 					sc.nextLine();
@@ -182,46 +178,55 @@ public class MenuUtil {
 				}
 				System.out.println("Do you want to continue? (y/n)");
 				decision=sc.next();
-			}while(decision.equalsIgnoreCase("y"));
+			} while (decision.equalsIgnoreCase("y"));
+			System.out.println("1. Go back to main menu");
+			System.out.println("2. Exit");
+			System.out.println("Please enter your choice : ");
+			choice = sc.nextInt();
+			if (choice == 1) start();
 			break;
 		case 3:
+			decision = "n";
 			DietPlanHelper helper=new DietPlanHelper();
-			System.out.println("enter your choice\n1 for adding a dietplan.\n2 for view all dietplan\n3 for updating a dietplan \n4 for deleting a dietplan ");
-			int n=sc.nextInt();
-			switch(n) {
-
-			case 1:
-				helper.case1();
-				break;		
-
-			case 2:
-				helper.case2();
-				break;		
-
-			case 3:
-				helper.case3();
-				break;			
-			case 4:
-				helper.case4();
-				break;
-
-
-			default :
-				System.out.println("Invalid choice");
-				start();
-
-
-			}
-			System.out.println("\nDo you want to continue? enter \n1 for yes\n2 for no");
-			int c=sc.nextInt();
-			if(c==1)
-				start();
-			else
-				System.out.println("Thanks");
+			do {
+				System.out.println("enter your choice\n"
+						+ "1 for adding a dietplan.\n"
+						+ "2 for view all dietplan\n"
+						+ "3 for updating a dietplan \n"
+						+ "4 for deleting a dietplan ");
+				n = sc.nextInt();
+				switch(n) {
+					case 1:
+						helper.case1();
+						break;		
+		
+					case 2:
+						helper.case2();
+						break;		
+		
+					case 3:
+						helper.case3();
+						break;	
+						
+					case 4:
+						helper.case4();
+						break;
+						
+					default :
+						System.out.println("Invalid choice");
+				}
+				System.out.println("Do you want to continue? (y/n)");
+				decision=sc.next();
+			} while(decision.equalsIgnoreCase("y"));
+			System.out.println("1. Go back to main menu");
+			System.out.println("2. Exit");
+			System.out.println("Please enter your choice : ");
+			choice = sc.nextInt();
+			if (choice == 1) start();
 			break;
 		case 4:
 			System.out.println("\nEnter Choice :\n 1.SAVE 2.DISPLAY 3.UPDATE 4.delete 5.EXIT");
-			int choice= sc.nextInt();
+			choice = sc.nextInt();
 			WeightLogCases helper1=new WeightLogCases();
 			/**
 			 * switch will give user to take any of the given values.
@@ -299,9 +304,17 @@ public class MenuUtil {
 					return;} 
 			}while(flag==1);
 			break;
+		case 6:
+			System.out.println("Thank you!");
+			System.exit(0);
+			break;
 		default:
-			System.out.println("Enter valid choice");
+			System.out.println("Invalid choice");
+			System.out.println("1. Continue 2. Exit");
+			choice = sc.nextInt();
+			if (choice == 1) start();
+			else System.out.println("Thank you!");
+			break;
 		}
-		System.out.println("---------------Thank You---------------");
 	}
 }
